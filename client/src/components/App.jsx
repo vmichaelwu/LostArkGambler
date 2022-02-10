@@ -9,14 +9,19 @@ const App = () => {
   const [failedSkill, setFailedSkill] = useState([]);
   const [scrollChance, setScrollChance] = useState(0.75);
 
-  useEffect(() => {
-    console.log('hello world!');
-  }, []);
+  const reset = (event) => {
+    event.preventDefault();
+    setSkill1([]);
+    setSkill2([]);
+    failedSkill([]);
+    setScrollChance(0.75);
+  };
 
   const generateRandomNumber = (event) => {
-    if (Math.random() < scrollChance) {
+    const rng = Math.random();
+    console.log(rng);
+    if (rng < scrollChance) {
       // success cases
-      console.log('success ' + scrollChance);
       if (event.target.name === 'skill1') {
         if (skill1.length === 8) {
           alert('maxed out');
@@ -43,8 +48,7 @@ const App = () => {
           alert('maxed out');
         } else {
           let temp = failedSkill.slice(0);
-          temp.push(1);
-          setScrollChance(scrollChance - 0.1);
+          temp.push(0);
           setFailedSkill(temp);
         }
       }
@@ -71,8 +75,9 @@ const App = () => {
           alert('maxed out');
         } else {
           let temp = failedSkill.slice(0);
-          temp.push(0);
+          temp.push(1);
           setFailedSkill(temp);
+          setScrollChance(scrollChance + 0.1);
         }
       }
     }
@@ -80,10 +85,12 @@ const App = () => {
 
   return (
     <div>
-      <div>{scrollChance.toString().slice(0, 4)}</div>
-      <SkillBar1 level={skill1} />
-      <SkillBar2 level={skill2} />
-      <FailedBar level={failedSkill} />
+      <div name='percent' class='title'>
+        {scrollChance.toString().slice(0, 4)}
+      </div>
+      <SkillBar1 className='bar' level={skill1} />
+      <SkillBar2 className='bar' level={skill2} />
+      <FailedBar className='bar' level={failedSkill} />
       <button name='skill1' class='button' onClick={generateRandomNumber}>
         Level Skill 1
       </button>
@@ -92,6 +99,9 @@ const App = () => {
       </button>
       <button name='failedSkill' class='button' onClick={generateRandomNumber}>
         Level Failed Skill
+      </button>
+      <button name='reset' class='button' onClick={reset}>
+        Reset
       </button>
     </div>
   );
