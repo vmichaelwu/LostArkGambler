@@ -12,11 +12,18 @@ const Summary = ({
   return (
     <div className='stats'>
       <div>Summary</div>
-      <div>Skill 1: {Math.round((counter1 / skill1.length) * 100, 1)}</div>
-      <div>Skill 2: {Math.round((counter2 / skill2.length) * 100, 1)}</div>
       <div>
-        Failed Skills:
-        {Math.round((counterFailed / failedSkill.length) * 100, 1)}
+        Skill 1: {Math.round((counter1 / skill1.length) * 100, 1)}% {counter1}{' '}
+        out of {skill1.length}
+      </div>
+      <div>
+        Skill 2: {Math.round((counter2 / skill2.length) * 100, 1)}% {counter2}{' '}
+        out of {skill2.length}
+      </div>
+      <div>
+        Failed Skills:{' '}
+        {Math.round((counterFailed / failedSkill.length) * 100, 1)}%{' '}
+        {counterFailed} out of {failedSkill.length}
       </div>
     </div>
   );
