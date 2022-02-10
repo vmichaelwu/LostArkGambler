@@ -48,3 +48,13 @@
   height: 50px;
   width: 125px;
 }
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats {
+  margin: 0px 0px 0px 50px;
+  text-align: right;
+}
