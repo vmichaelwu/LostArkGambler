@@ -87,7 +87,8 @@ const App = () => {
           alert('maxed out');
         } else {
           let temp = failedSkill.slice(0);
-          temp.push(0);
+          setScrollChance(scrollChance - 0.1);
+          temp.push(1);
           setFailedSkill(temp);
         }
       }
@@ -99,6 +100,7 @@ const App = () => {
         } else {
           let temp = skill1.slice(0);
           temp.push(0);
+          setScrollChance(scrollChance + 0.1);
           setSkill1(temp);
         }
       } else if (event.target.name === 'skill2') {
@@ -107,6 +109,7 @@ const App = () => {
         } else {
           let temp = skill2.slice(0);
           temp.push(0);
+          setScrollChance(scrollChance + 0.1);
           setSkill2(temp);
         }
       } else {
@@ -114,7 +117,7 @@ const App = () => {
           alert('maxed out');
         } else {
           let temp = failedSkill.slice(0);
-          temp.push(1);
+          temp.push(0);
           setFailedSkill(temp);
           setScrollChance(scrollChance + 0.1);
         }
